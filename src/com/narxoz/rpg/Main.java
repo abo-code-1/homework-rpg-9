@@ -1,5 +1,6 @@
 package com.narxoz.rpg;
 
+import com.narxoz.rpg.artifact.WeightAuditor;
 import com.narxoz.rpg.combatant.Hero;
 import com.narxoz.rpg.vault.ChronomancerEngine;
 import com.narxoz.rpg.vault.VaultRunResult;
@@ -18,6 +19,14 @@ public class Main {
 
         ChronomancerEngine engine = new ChronomancerEngine();
         VaultRunResult result = engine.runVault(List.of(tanya, kael));
+
+        System.out.println();
+        System.out.println("=== Open/Closed Proof: WeightAuditor (added without touching artifact/) ===");
+        WeightAuditor weightAuditor = new WeightAuditor();
+        tanya.getInventory().accept(weightAuditor);
+        System.out.println("[Weigh] total = " + weightAuditor.getTotalWeight() + "kg across "
+                + weightAuditor.getItemsCounted() + " items; heaviest = '"
+                + weightAuditor.getHeaviestName() + "' (" + weightAuditor.getHeaviestWeight() + "kg)");
 
         System.out.println();
         System.out.println("=== Final Vault Summary ===");
